@@ -2,7 +2,8 @@ import BookRepository from "./BookRepository";
 import Book from "./Book";
 
 export default class BookService {
-    private bookRepository: BookRepository;
+
+    private readonly bookRepository: BookRepository;
 
     constructor(bookRepository: BookRepository) {
         this.bookRepository = bookRepository;
@@ -14,5 +15,9 @@ export default class BookService {
 
     async findAll(): Promise<Array<Book>> {
         return this.bookRepository.findAll();
+    }
+
+    async delete(bookId: string): Promise<boolean> {
+        return this.bookRepository.delete(bookId);
     }
 }

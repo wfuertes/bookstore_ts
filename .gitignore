@@ -3,3 +3,4 @@ package-lock.json
 bookstore-ts.iml
 node_modules/*
 dist/*
+.dynamodb/*

@@ -1,8 +1,8 @@
-import Book from "../domain/book/Book";
+import AWS from "aws-sdk";
 import BookStoreApi from "../api/BookStoreApi";
 import BookService from "../domain/book/BookService";
-import SqlBookRepository from "./sql/SqlBookRepository";
 import RootService from "./services/RootService";
+import NoSqlBookRepository from "./sql/NoSqlBookRepository";
 
 const binds = new Map<any, any>();
 
@@ -12,8 +12,12 @@ const AppModule = {
     }
 };
 
-const database = new Map<string, Book>();
-binds.set('BookRepository', new SqlBookRepository(database));
+const documentClient = new AWS.DynamoDB.DocumentClient({
+    region: 'localhost',
+    endpoint: 'http://localhost:8000'
+});
+
+binds.set('BookRepository', new NoSqlBookRepository(documentClient));
 binds.set('BookService', new BookService(AppModule.get('BookRepository')));
 binds.set('BookStoreApi', new BookStoreApi(AppModule.get('BookService')));
 binds.set('RootService', new RootService(AppModule.get('BookStoreApi')));

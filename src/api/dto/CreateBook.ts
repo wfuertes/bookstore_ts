@@ -14,6 +14,6 @@ export default class CreateBook {
     }
 
     public toDomain(id: string, createdAt: Date): Book {
-        return new Book(id, this.title, this.price, createdAt);
+        return new Book(`CREATED!#${createdAt.getTime()}!#${id}`, this.title, this.price, createdAt);
     }
 }

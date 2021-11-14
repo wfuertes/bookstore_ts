@@ -11,6 +11,4 @@ export default class Book {
         this.price = price;
         this.createdAt = createdAt;
     }
-
-
 }

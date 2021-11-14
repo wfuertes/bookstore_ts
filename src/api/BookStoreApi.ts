@@ -19,4 +19,8 @@ export default class BookStoreApi {
     async fetchBooks(): Promise<Array<BookView>> {
         return (await this.bookService.findAll()).map(BookView.fromDomain);
     }
+
+    async delete(bookId: string): Promise<boolean> {
+        return this.bookService.delete(bookId);
+    }
 }
