@@ -2,7 +2,7 @@ import AWS from "aws-sdk";
 import BookStoreApi from "../api/BookStoreApi";
 import BookService from "../domain/book/BookService";
 import RootService from "./services/RootService";
-import NoSqlBookRepository from "./sql/NoSqlBookRepository";
+import NoSqlBookRepository from "./nosql/NoSqlBookRepository";
 
 const binds = new Map<any, any>();
 

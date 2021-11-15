@@ -2,6 +2,8 @@ import {ulid} from "ulid";
 import BookView from "./dto/BookView";
 import CreateBook from "./dto/CreateBook";
 import BookService from "../domain/book/BookService";
+import BookQuery from "../domain/book/BookQuery";
+import {Optional} from "typescript-optional";
 
 export default class BookStoreApi {
 
@@ -16,11 +18,16 @@ export default class BookStoreApi {
         return BookView.fromDomain(savedBook);
     }
 
-    async fetchBooks(): Promise<Array<BookView>> {
-        return (await this.bookService.findAll()).map(BookView.fromDomain);
+    async fetchBooks(query: BookQuery): Promise<Array<BookView>> {
+        return (await this.bookService.findAll(query)).map(BookView.fromDomain);
     }
 
-    async delete(bookId: string): Promise<boolean> {
+    async delete(bookId: string): Promise<void> {
         return this.bookService.delete(bookId);
+    }
+
+    async fetchById(bookId: string): Promise<Optional<BookView>> {
+       return this.bookService.findById(bookId)
+           .then(bookOpt => bookOpt.map(book => BookView.fromDomain(book)));
     }
 }

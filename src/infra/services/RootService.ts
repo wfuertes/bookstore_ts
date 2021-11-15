@@ -11,18 +11,27 @@ export default class RootService {
     }
 
     public configure(app: Application): void {
-        app.get('/books', async (req, res) => {
-            return res.send(await this.bookApi.fetchBooks());
-        });
-
         app.post('/books', async (req, res) => {
             const bookView = await this.bookApi.store(CreateBook.fromJson(req.body));
             return res.status(202).send(bookView);
         });
 
+        app.get('/books', async (req, res) => {
+            return res.send(await this.bookApi.fetchBooks({...req.query}));
+        });
+
+        app.get('/books/:id', async (req, res) => {
+            const bookView = await this.bookApi.fetchById(req.params.id);
+            if (bookView.isPresent()) {
+                return res.status(202).send(bookView.get());
+            }
+            return res.status(404).send();
+        });
+
         app.delete('/books/:id', async (req, res) => {
-            await this.bookApi.delete(req.params.id);
-            return res.status(204).send();
+            return this.bookApi.delete(req.params.id)
+                .then(() => res.status(204).send())
+                .catch(reason => res.status(400).send(reason));
         });
     }
 }

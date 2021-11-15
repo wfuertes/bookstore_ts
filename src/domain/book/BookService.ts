@@ -1,5 +1,7 @@
 import BookRepository from "./BookRepository";
 import Book from "./Book";
+import BookQuery from "./BookQuery";
+import {Optional} from "typescript-optional";
 
 export default class BookService {
 
@@ -13,11 +15,17 @@ export default class BookService {
         return this.bookRepository.save(book);
     }
 
-    async findAll(): Promise<Array<Book>> {
-        return this.bookRepository.findAll();
+    async findAll(query: BookQuery): Promise<Array<Book>> {
+        return this.bookRepository.findAll(query);
     }
 
-    async delete(bookId: string): Promise<boolean> {
-        return this.bookRepository.delete(bookId);
+    async delete(bookId: string): Promise<void> {
+        return this.findById(bookId)
+            .then(bookOpt => bookOpt.orElseThrow(() => 'Book not found: ' + bookId))
+            .then(book => this.bookRepository.delete(book));
+    }
+
+    async findById(bookId: string): Promise<Optional<Book>> {
+        return this.bookRepository.findById(bookId);
     }
 }

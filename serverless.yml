@@ -42,8 +42,8 @@ resources:
           - AttributeName: sk
             KeyType: RANGE
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
 
     # Uncomment only if you already have a DynamoDB running locally
     # noStart: true

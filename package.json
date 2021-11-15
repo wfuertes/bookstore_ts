@@ -25,6 +25,7 @@
     "serverless": "^2.66.1",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-offline": "^8.2.0",
+    "typescript-optional": "^2.0.1",
     "ulid": "^2.3.0"
   }
 }

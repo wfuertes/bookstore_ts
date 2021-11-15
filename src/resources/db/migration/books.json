@@ -1,23 +1,29 @@
 [
   {
-    "pk": "BOOK",
-    "sk": "CREATED!#1636854422440!#01FME20PX7TRMT57D9FQ0Q2TW3",
-    "title": "This is a book",
-    "price": "23.98",
+    "pk": "BOOK#01FME20PX7TRMT57D9FQ0Q2TW3",
+    "sk": "CREATED#1636854422440",
+    "title": "Book number One",
+    "price": "11.98",
     "createdAt": 1636854422440
   },
   {
-    "pk": "BOOK",
-    "sk": "CREATED!#1636854422440!#01FME20SS7D4N23PQGTN6RHGCG",
-    "title": "This is a book",
-    "price": "23.98",
+    "pk": "BOOK#01FME20SS7D4N23PQGTN6RHGCG",
+    "sk": "CREATED#1636854425383",
+    "title": "Book number Two",
+    "price": "12.98",
     "createdAt": 1636854425383
   },
   {
-    "pk": "BOOK",
-    "sk": "CREATED!#1636854422440!#01FME20TDN072HJ9KHGCJMVW74",
-    "title": "This is a book",
-    "price": "23.98",
+    "pk": "BOOK#01FME20TDN072HJ9KHGCJMVW74",
+    "sk": "CREATED#1636854426037",
+    "title": "Book number Three",
+    "price": "13.98",
     "createdAt": 1636854426037
+  },
+  {
+    "pk": "AUTHOR#01FME20TDN072HJ9KHGCJMVW74",
+    "sk": "BIRTH#1636854426037",
+    "name": "Book number Three",
+    "birthDate": 1636854426037
   }
 ]
